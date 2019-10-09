@@ -1,0 +1,18 @@
+function externalData(url){
+//new Promise object, pass the callback function
+return new Promise(function(resolve,reject) {
+	if(url.length>0){
+		resolve('response data') 
+
+         } else {
+
+		reject('there was an error')
+          }
+    })
+}
+
+externalData('') //if its empty string 'there waas an error'
+   .then(data=> console.log(data))
+   .catch(error=> console.log(error));
+
+//resolve run .then and reject run .catch

@@ -1,0 +1,28 @@
+Exercise JSON server with AJAX practice application
+
+ep.2
+notes on json-server in github 
+--https://github.com/typicode/json-server
+
+
+1.-- $ npm install -g json-server
+
+ Creating db.json file
+2. --json-server db.json
+
+ep.3
+open postman in desktop or chrome extension
+
+create new -> request -> fill
+request name = JSONDB project
+Request description (Optional) = testing json and create folder name -> Postman echo
+
+and -- save
+
+in the GET input paste http://localhost:3000/profile and you will see the content of the file
+
+ep.4
+--mkdir public
+-- echo 'hello World' > public/index.html //creating a file index.html inside public which contain hello world 
+
+

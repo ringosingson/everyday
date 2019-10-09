@@ -1,0 +1,308 @@
+ep.1 
+even  without writing any code it has
+window:global object
+this: window
+
+this is global execution context
+
+each execution context has two phase
+1.creation phase(declare)
+2.execution phase
+
+var name = 'Ringo';
+var handle = '@rinzkira';
+
+function getUser(){
+  return {
+ 	name;
+	handle;
+ }
+}
+
+in creation phase we have
+  1.window: global object
+  2.this:window
+  3.name: undefined (it allocate memory for storing)
+  4.handle:undefined(default value of undefined)
+  5.getUser:fn()(only declare not yet run)
+  (1.create a global object,
+   2.create an object called 'this'
+   3.set up memory space for variable and functions
+   4.assign variable declarations a default value of undefined
+     while placing any function declaration in memory)
+
+in execution phase
+  1.window: global object
+  2.this:window
+  3.name: Ringo
+  4.handle:@rinzkira
+  5.getUser:fn()(only declare not yet run)
+
+in function execution context(function a jong creation toh execution phase um)
+  (1.create an arguments object(the only difference of global and function execution context),
+   2.create an object called 'this'
+   3.set up memory space for variable and functions
+   4.assign variable declarations a default value of undefined
+     while placing any function declaration in memory)
+
+when a function is invoked a brand new execution context is created in the call stack
+after it run the exection context is poop out of the call stack(javascript is single threaded which means it runs one task at a time)
+
+function foo() {
+ var bar = 'Declared in foo'
+}
+foo()
+console.log(bar)// here bar is not define foo execution context is already poop of the stack
+
+code
+
+var name = 'Ringo'
+
+function logName() {
+	console.log(name)
+}
+
+logName(); // Tyler(scope chain->abul pen a function sung avet masat(local) means nearest
+
+               amulole global a avet
+
+What is Scope? Scope is the accessibility of variables, functions, and objects in some particular part of your code during runtime. In other words, 
+scope determines the visibility of variables and other resources in areas of your code
+--In JavaScript, scope refers to the current context of your code.
+
+--. Scope refers to the visibility of variables and context refers to the value of this in the same scope. 
+
+--Lexical Scope Whenever you see a function within another function, the inner function has access to the scope in the outer function, this is 
+  called Lexical Scope or Closure 
+
+--closure is when a function remembers its lexical scope even when
+the function is executed outside of that lexical scope.
+
+closure example
+
+var count = 0;
+
+function makeAdder(x){
+  return function inner(y){
+     return x + y
+ }
+}
+
+var add5 = makeAdder(5);(makeAdder hi arun chai phatle add5= inner(y) hidi ta, closure but it store x=5 here)
+count += add5(2) (so add5(2) is same as inner(2) here x value is not given so it look up the scope chain and find x = 5)
+
+ep 2.
+understanding the this keyword,call,apply,and bind
+
+--implicit binding
+--explicit binding
+--new binding
+--window binding
+
+1.implicit binding - left of the dot at call time
+
+   var me = {
+   name: 'ringo'
+   age:'26'
+   sayName: function() {
+	console.log(this.name)
+ }
+}
+me.sayName(); (look to the left of the dot of the function invoked and 
+                that is the this keyword reference to)
+
+2.explicit binding - call,apply,bind
+ 
+ var sayName = function() {
+   console.log('My name is' + this.name 'and i know' +lang1 + ','+ lang2)
+}
+
+var stacy = {
+  name: 'Stacy';
+  age: 21;
+}
+
+sayName.call(stacy)// the this keyword reference to the inside bracket
+
+if you want to pass argument in the function
+
+var sayName = function(lang1,lang2,lang3) {
+   console.log(this.name)
+}
+
+var stacy = {
+  name: 'Stacy';
+  age: 21;
+}
+
+var languages = ['javascript','Ruby','python']
+
+sayName.call(stacy, languages[0],languages[1],languages[2])// after reference other is argument
+
+sayName.apply(stacy, languages) // same result dot apply parse all the argument for us
+
+--.call pass argument one by one .apply pass argument as an array , .bind is same as .call but return a brand new function that u can invoked later
+--.call and .apply immediately invoked the function but .bind return a brand new function dat you can invoked later
+
+3.new binding- its gonna create brand new object for us and save it as this
+ -- the this keyword inside that function is bound to the new object being contructed(this={})
+ var Animal = function(color,name, type){
+  //this = {}
+  this.color = color;
+  this.name = name;
+  this.type = type
+}
+
+var zebra = new Animal('black and white','zorro', 'zebra')
+
+4.window binding
+
+ var sayAge = function(){
+   console.log(this.age)
+}
+
+var me = {
+ age = 26
+}
+
+sayAge(); // undefinded - here this point to the window object(becoz nothing is on the left side of the function)
+
+window.age = 35;
+sayAge(); // 35
+
+***dont bind with window if not neccessary(you can use strict mode)
+
+ep. 3
+Higher order function and callback
+
+function add(x,z) {
+   return x + z
+}
+
+function higherOrderFunction(x, callback) {
+  return callback(5,x);
+}
+  
+ higherOrderFunction(10,add);
+
+--The function we pass in is a callback function The outer function that takes in the function (our callback or argument or reference of function)
+ is a higher-order function
+
+code--
+[1,2,3].map((i)=> i +5)
+
+Higher-order functions--Takes in a function or passes out a function; 
+
+Higher order function example - map(e=>{})
+
+PROMISE-
+in broswer look console.log(promise) in the code below..look the method given in -proto-
+common use .then and .catch
+
+
+const promise = new Promise((resolve,reject) => {
+ 
+})
+console.log(promise)//output ve lechun -proto- a
+
+--promises- to avoid callback function, less code
+
+
+example
+
+function onSuccess() {
+    console.log('Success!');
+}
+
+function onError() {
+    console.log('Error is detected');
+}
+
+const promise = new Promise((resolve,reject) => {
+   setTimeout(()=> {
+       resolve()   // Success 0r  reject()   // Error is detected
+   },2000)
+})
+
+promise.then(onSuccess).catch(onError)
+
+---THE New Hard parts-----
+
+(
+6.explanation
+setTimeout hi web api hijeh a
+callstack a on a global sese arun chai phatle bou run bep d
+
+function printHello(){    
+      console.log(“Hello”);
+ }
+
+function blockFor1Sec(){ 
+   //blocks in the JavaScript thread for 1 second
+     }
+
+setTimeout(printHello,0); //o ahivang a ki print loudi, callstack on nailou jeh a
+blockFor1Sec()
+console.log(“Me first!”);
+
+//event loop check weather the callstack is empt or global code
+ finish running(a check2 jeng)
+
+akichai tai tiphatle setTimeout a run(javascript polang ahijeh a a nga web brower api)
+
+web browser api a pat ahoilou nachu control nanei lou, anop phat2 ki run
+(callback a na run ngai tei2)
+
+10.
+ Promises act as a placeholder for the data we hope to get back from the web browser feature’s background work.
+ --Special objects built into JavaScript that get returned immediately when we make a call to a web browser API/feature 
+(e.g. fetch) that’s set up to return promises (not all are)
+
+setTimeout does nothing in the javascript it only set timer in the browser(so the backdraw is it only runs after 
+callstack is empty and global execution code finish running)
+
+so promise is introduce,- which set a timer and an object in javascript which run automatically wen the task is complete
+
+EP.11
+ Using two-pronged ‘facade’ functions(promise object n value property) that both initiate background web browser work and return a placeholder 
+object (promise) immediately in JavaScript. 
+
+function display(data){ 
+   console.log(data)
+ } 
+const futureData = fetch('https://twitter.com/will/tweets/1') //fetch do two things(two facade function)
+futureData.then(display); // Attaches display functionality//after the data is ready run displa functioin which is in .then(function to be run)
+console.log(“Me first!”);
+output---- 1. Me first
+           2. hi(value propert from twitters)
+
+13.explanation
+
+EP.15
+Promises, Web APIs, the Callback & Microtask Queues and Event loop allow us to defer our actions until the ‘work’ (an API request, timer etc) 
+is completed and continue running our code line by line in the meantime
+
+ Asynchronous JavaScript is the backbone of the modern web - letting us build fast ‘non-blocking`
+
+EP.26 async/await
+
+async function createFlow(){ 
+ console.log("Me first")  const data = await fetch('https://twitter.com/will/tweets/1') //await throwout createFlow out of execution context
+  console.log(data)
+ }
+createFlow()
+console.log("Me second")
+
+output-1. Me first
+       2. Me second
+       3. hi
+
+END
+)
+
+
+Async-await
+note: https://javascript.info/async-await
+
+
+ 

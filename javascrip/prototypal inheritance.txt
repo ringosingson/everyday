@@ -1,0 +1,135 @@
+egghead----
+
+const obj = {
+
+	firstName: 'Ringo'
+}
+
+console.log(obj.firstName) //Tyler
+console.log(obj.middleName) // undefined
+console.log(obj.toString()) // [object object] - toString() is a method in global prototype object
+                               becoz every object has prototype chain(-proto-) which is link to global object prototype object
+
+const protoObj = {
+	lastName: 'Singson'
+}
+
+Object.setPrototypeOf(obj, protoObj)
+
+console.log(obj.lastName)// Singson
+
+//paste the code in brower and console.log(obj) you will see the next in line prototype chain is the proObj and
+the last is the global
+
+function Car(make) {
+	this.make = make
+	this.wheels = 2
+}
+
+console.log(Car.prototype) // Car {}
+
+Car.prototype.wheels = 4; // adding object to Car
+
+Car.prototype.color = 'red';
+
+console.log(Car.prototype) // Car { wheels: 4}
+
+const myCar = new Car('Ford')
+
+console.log(myCar) // Car { make: 'Ford', Wheels: 2} //it doesnt show color becoz it is only link thru prototype chain
+							it search the prototype object only when it doesnt find the object we search
+
+console.log(myCar.color) // red 
+
+console.log(myCar.wheels) // 2 , the output is 2 and not 4 becoz it already find the object wheels and does not go up the prototype chain 
+
+note: when a new keyword is use on a function it does 3 things
+	1.brand new object is created
+	2.prototype link
+	3.contructor object is set to this binding for that function call// here this is directed to myCar instance
+
+ep4.watch again.understand chenlou
+
+ep.5
+code--
+function Foo(name) {
+ this.name = name
+}
+
+Foo.prototype.myName = function() {
+ return this.name
+}
+
+function Bar(name) {
+ Foo(name) //to change the output undefind to ringo use -- Foo.call(this, name)
+}
+
+//Bar.prototype = Object.create(Foo.prototype) //with dis code output is undefind now
+
+const a = new Bar('ringo')
+
+console.log(a.myName()) //a.myName is not a function coz myName is not link with prototype chain with Bar
+
+to link it we use 
+Bar.prototype = Object.create(Foo.prototype)
+
+ep.6.for in-loop on object with prototypes
+
+const obj = {
+ firstName = 'ringo'
+ lastName =  'singson'
+}
+
+let n = 0;
+
+for(let property in obj){
+ n++
+}
+
+console.log(n) //2 (becoz it has two property)
+
+code--
+const obj = {
+ firstName = 'ringo'
+ lastName =  'singson'
+}
+
+const protoObj = {
+  hair: 'black'
+  //lastName : 'haokip' //if property name is same then it count as single output is 2 not 3
+}
+
+Object.setPrototypeOf(obj, protoObj)
+
+let n = 0;
+
+for(let property in obj){
+ n++
+}
+
+console.log(n)//3, (new property is hair is added)
+
+code--
+const obj = {
+ firstName = 'ringo'
+ lastName =  'singson'
+}
+
+const protoObj = {
+  hair: 'black'
+  //lastName : 'haokip' //if property name is same then it count as single output is 2 not 3
+}
+
+Object.setPrototypeOf(obj, protoObj)
+
+let n = 0;
+
+for(let property in obj){
+ if(obj.hasOwnProperty(property)) {
+   n++
+}
+}
+
+console.log(n)//2 /(hasOwnProperty method look only the original property)
+
+

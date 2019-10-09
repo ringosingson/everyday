@@ -1,0 +1,50 @@
+this keyword is dynamic scope unlike lexical which go step by step of the building
+
+this depends on where it is call(the only thing dat matter is how the function was call)
+
+
+in most of the case default this is global object
+
+this keyword 3 code explain
+
+line 9 is the default this keyword
+
+new keyword(creating new object)(AKA constructor call - any old random function with the new keyword put infront of it)
+
+ 4 step of new keyword
+
+1.create a brand new object out off thin air
+2.link that object to another object
+3.pass that object in as the this context
+4.return that this if something else object doesnt already return
+
+
+4 rules of how to know this keyword is call
+in the pic as in oreder eg. the new keyword can override the hard binding
+
+episode 6. question and answer watch
+
+
+in arrow function this keyword behave as lexical(it a regular old variable)
+
+this keyword
+1.implicit binding
+2.explicit binding
+3.new binding
+4.window binding
+
+implicit binding
+where the this keyword is use
+look to the left of the dot that is where it is invoke
+
+
+explicit binding
+    .call- immediately invoke and one by one
+    .apply- in array
+    .bind- same as .call but return brand new function that u can invoke later
+
+new binding
+with new new object is constructed
+
+window binding
+this keyword bind to the window object

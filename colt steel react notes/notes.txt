@@ -1,0 +1,32 @@
+Component- 
+  1. building block of react
+  2. combines logic(js) and presentation(jsx)
+
+props-
+ 1. data passed to a component (or found via defaults)
+ 2. immutable: component cannot change its own props
+
+STATE -
+  1. internal data specific to a component
+  2. data that changes over time
+
+ep.3
+ thinking about state
+
+1. in web applicatioin the user interface has to be stateful
+2.logged in user see a different screen than looged-out user
+3.clicking edit profile opens up a modal(pop up) window
+
+STATE CHANGES - STATE is designed to constantly change in
+response to events
+
+STATE TRack two types of things on the client side
+1. UI logic - the changing state of the interface. eg. modal open
+  if you edit profile
+
+2.Bussiness logic- the changing state of data 
+          eg. in my inbox, message are either read or unread,
+WHAT IS REACT STATE?
+-- in REAct , stae is an instance attribute on a component,
+it's always an object(POJO-plain old javascript object), since you'll want to keep track
+of several keys/values pair

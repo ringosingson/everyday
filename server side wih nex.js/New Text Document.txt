@@ -1,0 +1,46 @@
+ep. 4
+--npm init
+--npm --save next react react-dom
+to connect to the next server we modify the script in the
+json file
+
+'scripts': {
+ 'dev': 'next',
+ 'build': 'next build',
+'start': 'next start'
+}
+
+next doesn't hav a directory like src in react so we have to 
+create our own
+
+--create pages folder and inside create index.js file
+
+to run next server
+-- npm run dev
+
+ep.5
+in next route is inbuil depends on the file you create
+using link in next
+import Link from 'next/link'
+
+<Link href='/'><a>Home</a></Link>
+// a tag is compulsory and without link it will reload the whole page evertime
+
+ep.6
+importing component which should be include in the page file
+but which is not pages
+--create a directory components
+
+ep.7 creating layout
+so that header stay in everypages without import to every file
+
+--create layouts directory, mainlayout file, passing props children
+
+ep.8
+initial props load first in next unlike in react contructor and render
+--code
+static getInitialProps(){
+ console.log('m first')
+
+ return {}
+}

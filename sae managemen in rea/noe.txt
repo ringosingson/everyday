@@ -1,0 +1,50 @@
+STATE MANAGEMENT USING REACT AND MOBX
+ep. 2
+
+--pure functions take arguments and return values based on those arguments.
+  //pure
+  const add = (a,b) => {
+      return a+b;
+  }
+
+
+--Impure functions can mutate things from outside their scope or produce side
+effects.
+  //impure
+    const b;
+  const add = (a) => {
+     return a+b;
+  }
+//impure
+const add = (a,b) => {
+      console.log('lololo') //console.log makes it impure
+      return a+b;
+  }
+mutating arrays and objects is also impure
+
+EP. 3
+//copy object
+
+const original = { a:1, b:2 };
+const extension = {c: 3 }
+const copy = Object.assign({}, original); or const copy = { ...original }
+
+//extend Object
+const extended = Object.assign({}, original , extension) or const extended = { ...original , ...extension}
+
+//copy array
+const original = [1,2,3]
+const copy = [1,2,3].slice() or const copy = [...original]
+
+//Extend array
+const original = [1,2,3]
+const extended = original.concat(4);
+const moreExtended = original.concat([4,5])
+           or
+const original = [1,2,3]
+const extended = [...original, 3, 4 ];
+const moreExtended = [...original, ...extended]
+
+EP.4
+REDUX
+The whole state tree of your application is kept in one store

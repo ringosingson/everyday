@@ -1,0 +1,33 @@
+blog from https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
+
+Reduce is the Swiss-army knife of array iterators. It’s really powerful. So powerful, you can
+ build most of the other array iterator methods with it, like .map(), .filter() and .flatMap(). 
+And in this article we’ll look at some more amazing things you can do with it. But, if you’re new 
+to array iterator methods, .reduce() can be confusing at first.
+
+function fizzBuzzReducer(acc, element) {
+    if (element % 15 === 0) return `${acc}Fizz Buzz\n`;
+    if (element % 5 === 0) return `${acc}Fizz\n`;
+    if (element % 3 === 0) return `${acc}Buzz\n`;
+    return `${acc}${element}\n`;
+}
+
+const nums = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9,
+    10, 11, 12, 13, 14, 15
+];
+
+console.log(nums.reduce(fizzBuzzReducer, ''));
+
+
+self closing element in html
+    <br>
+    <embed>
+    <hr>
+    <img>
+    <input>
+    <link>
+    <meta>
+    <param>
+    <source>
+    <wbr>
