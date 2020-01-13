@@ -1,0 +1,97 @@
+02. it is just javascript - we can take variable.
+ --taking the variable reactElement and show it in domElement
+--last line.
+
+03. 
+
+const text = 'Add'
+cont reactElement = React.createElement(
+   'div',
+    null,  //attribute for style etc
+   '+',
+    ' ',
+    text
+  )
+all the element after null are the children of div.
+
+
+const text = 'Add'
+cont reactElement = React.createElement(
+   'button',
+    { className : 'icon_button' },  //attribute for style etc
+   '+',
+    ' ',
+    text
+  )
+
+in react string is code within object ( style: { fontWeight: bold})
+
+04.
+
+convert to jsx.
+<span style = {{ fontWeight : 'bold'}}> //1st curly is back to javaScript, and
+                                          2nd curly is the original object
+
+05.
+using react icon
+
+07.
+component reuse with props.
+changing the icon and text using the same component
+but different props
+
+08. children props
+--pass it with position and if dre are many children
+pass using object. 
+--same code with 07 but using children.props
+
+09.
+Data-flow in react
+--passing data into the component as props and to take out data
+from the component use function(eg onClick) code should be in both ways
+
+10.
+custom events.
+pressing enter or space key will trigger the even
+
+11.
+using reach ui for login signup
+
+12. 
+Declarative is to describe what you want and
+imperative is how to get there
+eg. you want your food hot hot you declare it and you got it hot
+imperative is the process take the food, put it in the oven,
+set the temperatur etc.
+
+14.
+if there is an error show this using useState
+{error && ( <center>
+               <p>{error}</p>
+            </center>
+      )}
+
+clearing the error if we click add again setError(null)
+
+15.
+using html tag <marquee> line line a che
+
+18.
+showing password and not showing using useState
+
+type = {showPassword ? 'text': 'password'}
+
+onChange = { () => { setShowPassword(!showPassword)}}
+
+21.
+useRef
+--reference to something, usually a DOM element
+--in react we dont use getElementById instead we use useRef
+
+ const messageLengthRef = useRef()
+
+ const span = messageLengthRef.current
+
+ <span ref={messageLengthRef}/>
+
+

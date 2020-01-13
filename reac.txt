@@ -1,0 +1,5 @@
+if bug
+
+
+rm -rf pakage-json.lock
+rm -rf node_modules
