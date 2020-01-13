@@ -1,0 +1,72 @@
+6.explanation
+setTimeout hi web api hijeh a
+callstack a on a global sese arun chai phatle bou run bep d
+
+function printHello(){    
+      console.log(“Hello”);
+ }
+
+function blockFor1Sec(){ 
+   //blocks in the JavaScript thread for 1 second
+     }
+
+setTimeout(printHello,0); //o ahivang a ki print loudi, callstack on nailou jeh a
+blockFor1Sec()
+console.log(“Me first!”);
+
+//event loop check weather the callstack is empt or global code
+ finish running(a check2 jeng)
+
+akichai tai tiphatle setTimeout a run(javascript polang ahijeh a a nga web brower api)
+
+web browser api a pat ahoilou nachu control nanei lou, anop phat2 ki run
+(callback a na run ngai tei2)
+
+10.
+ Promises act as a placeholder for the data we hope to get back from the web browser feature’s background work.
+ --Special objects built into JavaScript that get returned immediately when we make a call to a web browser API/feature 
+(e.g. fetch) that’s set up to return promises (not all are)
+
+setTimeout does nothing in the javascript it only set timer in the browser(so the backdraw is it only runs after 
+callstack is empty and global execution code finish running)
+
+so promise is introduce,- which set a timer and an object in javascript which run automatically wen the task is complete
+
+EP.11
+ Using two-pronged ‘facade’ functions(promise object n value property) that both initiate background web browser work and return a placeholder 
+object (promise) immediately in JavaScript. 
+
+function display(data){ 
+   console.log(data)
+ } 
+const futureData = fetch('https://twitter.com/will/tweets/1') //fetch do two things(two facade function)
+futureData.then(display); // Attaches display functionality//after the data is ready run displa functioin which is in .then(function to be run)
+console.log(“Me first!”);
+output---- 1. Me first
+           2. hi(value propert from twitters)
+
+13.explanation
+
+EP.15
+Promises, Web APIs, the Callback & Microtask Queues and Event loop allow us to defer our actions until the ‘work’ (an API request, timer etc) 
+is completed and continue running our code line by line in the meantime
+
+ Asynchronous JavaScript is the backbone of the modern web - letting us build fast ‘non-blocking`
+
+EP.26 async/await
+
+async function createFlow(){ 
+ console.log("Me first")  const data = await fetch('https://twitter.com/will/tweets/1') //await throwout createFlow out of execution context
+  console.log(data)
+ }
+createFlow()
+console.log("Me second")
+
+output-1. Me first
+       2. Me second
+       3. hi
+
+
+
+
+
