@@ -1,0 +1,138 @@
+episode 8 explaination and 9
+
+ep.11
+functions are both objects and functions :
+
+   function multiplyBy2(num){ 
+          return num*2 
+     }
+   multiplyBy2.stored = 5 multiplyBy2(3) // 6
+       multiplyBy2.stored // 5 multiplyBy2.prototype // {}
+
+We could use the fact that all functions have a default property on their object version, ’prototype’,
+ which is itself an object - to replace our functionStore object
+
+ep.12.explaination
+
+new keyword naman phatle capital(which show you better run me with new) a pat di,hetsah na hiche function hin
+ New keywork angai te hetsah nadi
+ajeh chu new aum loule this keyword in a refer na kihe lou di.. window a refer d ahijeh a
+
+function UserCreator(name, score){ 
+     this.name = name;  this.score = score; 
+}
+ UserCreator.prototype.increment = function() {  
+            this.score++;
+      }; 
+UserCreator.prototype.login = function(){ 
+                            console.log("login"); 
+                                };
+const user1 = new UserCreator(“Eva”, 9)
+user1.increment()
+
+14.this refers to the left side of dot
+user1.increment() in this case it refers to user1
+this hi function sunga um achom global a achom
+
+15.
+function UserCreator(name, score) {  
+    this.name = name;  this.score = score;
+ }
+UserCreator.prototype.increment = function(){ 
+ function add1(){    this.score++; 
+ }  // const add1 = function(){
+this.score++;}  add1()
+ };
+UserCreator.prototype.login = function(){  
+console.log("login");
+ };
+const user1 = new UserCreator(“Eva”, 9)
+user1.increment()
+
+hiche a this hin windows object ako.add() in object aneilojeh
+
+16. hiche problem solve nadia arrow function mandi
+arrow function bind this lexicaly
+
+17.prototype hi abeilam a sut nadia class kimang 
+ constructor( letting the javascript do all dis, reference sep sah)
+--every function and object has its own prototype
+
+23. in js inheretenc is getting access to the property, not inherit directly(watch explaination last part)
+
+24.Object.setPrototypeOf(paidUserFunction,userFunction)
+--here paidUserFunction prototype is reference to userFunction
+, it can access userFunction
+
+28. watch explaination
+const obj = { 
+    num: 3,  increment: function(){
+           this.num++;
+       } 
+  };
+ const otherObj = { 
+      num: 10 
+   };
+ obj.increment(); // obj.num now 4
+   obj.increment.call(otherObj); // otherObj.num now 11
+
+    // obj.increment.apply(otherObj);
+
+this always refers to the object to the left of the dot on which the function (method) is being called - 
+unless we override that by running the function using .call() or .apply() 
+which lets us set the value of this inside of the increment function
+
+29.
+the new keywork set this to new object inside the function which was call
+const user1 = new UserCreator // hear this point to userCreator
+new keyword does this--
+1. it creat new object this - this points to prototype of the function(usercreator)
+2. prototype
+3. and return to user1. where user1 can access 
+
+dan blog.
+
+Why do we call super? Can we not call it? If we have to call it, what happens if we don’t pass props? Are there any other arguments? Let’s find out.
+
+In JavaScript, super refers to the parent class constructor. (In our example, it points to the React.Component implementation.)
+
+Importantly, you can’t use this in a constructor until after you’ve called the parent constructor. JavaScript won’t let you:
+
+code--
+
+   class Checkbox extends React.Component {
+  constructor(props) {
+    // ?? Can’t use `this` yet
+    super(props);
+    // ? Now it’s okay though
+    this.state = { isOn: true };
+  }
+  // ...
+}
+
+There’s a good reason for why JavaScript enforces that parent constructor runs before you touch this. Consider a class hierarchy:
+
+
+code
+
+--
+
+  class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class PolitePerson extends Person {
+  constructor(name) {
+    this.greetColleagues(); // ?? This is disallowed, read below why
+    super(name);
+  }
+  greetColleagues() {
+    alert('Good morning folks!');
+  }
+}
+
+ And that’s why I recommend always passing down super(props), even though it isn’t strictly necessary:
+
+
