@@ -1,0 +1,53 @@
+ep.4
+import React from "react";
+import "./styles.css";
+import { useSpring, animated } from "react-spring";
+
+export default function App() {
+  const fade = useSpring({
+    from: {
+      opacity: 0
+    },
+    to: {
+      opacity: 1
+    }
+  });
+  //shorter
+  // const fade = useSpring({ from: { opacity:0},opacity:1})
+
+  return (
+    <animated.div className="App" style={fade}>
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+    </animated.div>
+  );
+}
+
+ep.5 toggle
+
+import React, { useState } from "react";
+import { useSpring, animated } from "react-spring";
+
+const Toggle = () => {
+  const [isToggled, setToggle] = useState(false);
+  const fade = useSpring({
+    opacity: isToggled ? 1 : 0 // or color -- color: isToggled ? "red" : "blue"
+  });
+
+  return (
+    <div>
+      <animated.h1 style={fade}>Hello spring</animated.h1>
+      <button onClick={() => setToggle(!isToggled)}>Toggle</button>
+    </div>
+  );
+};
+
+export default Toggle;
+
+---code
+ //opacity: isToggled ? 1 : 0,
+    color: isToggled ? "red" : "blue",
+ //fontSize: isToggled ? "2rem" : "5rem",
+    transform: isToggled ? "translate3d(0,0,0)" : "translate3d(0,-50px,0)"
+
+ep.7
