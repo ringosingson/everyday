@@ -1,0 +1,64 @@
+1.
+array function is shorter to type eg.
+
+function makeFunction(a,b) {
+return a + b
+}
+
+to dis
+
+const makefunction = (a,b) =>  a + b; //implicit return
+
+const createUser = (name, email) => {
+   return {
+
+ name: name,
+ email: email,
+createdAt: Date.now()
+  }
+}
+
+//implicit function 
+
+
+const createUser = (name, email) => (  //use parenthesis insted of return
+  {
+   name: name,
+   email: email,
+   createdAt: Date.now()
+  }
+)
+
+2. this in arrow function never change value so use
+regular function for statefull this(if u need a dynamic value)
+eg. 
+
+ function printThis() {
+   console.log(this)
+}
+
+const fn = printThis.bind({a:1})
+fn();// a:1
+
+arrow function -
+
+ const printThis = () => {
+   console.log(this)
+}
+
+const fn = printThis.bind({a:1})
+fn();// {} - never change
+
+4. statement vs expression
+ let a = 1 + 2;
+//here 1 + 2 is expression and statement is the entire thing
+ if(true) {
+  // the entire is statement the argument inside parenthesis is expression(true)
+}
+
+for(), while(), try() catch() - statement
+in react inside jsx only expression can be use 
+eg. <div>{1 + 2}</div> not  <div>{ if(1>2) ...}</div> --statement cannot be use
+
+
+5.
