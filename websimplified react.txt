@@ -1,0 +1,369 @@
+ep.3
+
+running without install use npx
+--npx create-react-app . //period is installing in what ever folder you are in
+
+ep.6
+import React from "react";
+
+function Counter() {
+  const [number, setNumber] = React.useState(0);
+
+  return (
+    <>
+      <button onClick={() => setNumber(preNumber => preNumber - 1)}>-</button>
+      <span>{number}</span>
+      <button onClick={() => setNumber(preNumber => preNumber + 1)}>+</button>
+    </>
+  );
+}
+
+export default Counter;
+
+ep.7
+context  api.
+use when passing theme. global variable,instead of passing
+one by one
+ThemeContext should have a provider and should always take a value
+and should pass object
+
+ep.10.
+in app.js file-
+
+export default function App() {
+  return <RecipeList recipes={sampleRecipes} />;
+}
+
+const sampleRecipes = [
+  {
+    id: 1,
+    name: "Plain Chicken",
+    servings: 3,
+    cookTime: "1:45",
+    instructions:
+      "1. Put salt on Chicken\n2. Put chicken in oven\n3. Eat the chicken"
+  },
+  {
+    id: 2,
+    name: "Plain Pork",
+    servings: 5,
+    cookTime: "0:45",
+    instructions: "1. Put salt on pork\n2. Put pork in oven\n3. Eat the pork"
+  }
+];
+
+in recipelist file
+--
+export default function RecipeList({ recipes }) {
+  return (
+    <div>
+      {recipes.map(recipe =>{ 
+        return (
+        <Recipe key={recipe.id} {...recipe} />
+      )})}
+    </div>
+  );
+}
+
+key koidi poimo
+
+in recipe file
+
+import React from "react";
+
+export default function Recipe(props) {
+  const { name, cookTime, servings, instructions } = props;  //destructuring with props, argument bou a koile nal moval
+  return (
+    <div>
+      <div>
+        <h3>{name}</h3>
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+      <div>
+        <span>Cook Time:</span>
+        <span>{cookTime}</span>
+      </div>
+      <div>
+        <span>Serving:</span>
+        <span>{servings}</span>
+      </div>
+      <div>
+        <span>Instructions:</span>
+        <div>{instructions}</div>
+      </div>
+    </div>
+  );
+}
+
+12.css
+folder chombeh sem a import ji di,
+
+@import-normalize;  //normalize hi poimo--browser jouse khat a asem css default;
+@import "recipe-list.css";
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Indie+Flower&display=swap");
+@import "buttons.css";
+
+*,
+*::before,
+*::after {
+  font-family: "Amatic SC", cursive, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+IN buttons.css file
+.btn {
+  font-size: inherit;  
+}
+
+html a font-size ham ilheh phat le adang kilhenga 
+button kilheng lo ,browser default a umden chutijeh a chu
+inherit sah di html{} apat jouphat kilheng bep di asize. codesandbox a theilou
+
+.btn--primary {
+  color: white;
+  background-color: hsl(200, 100%, 50%);
+}
+
+.btn--primary:hover {
+  background-color: hsl(200, 100%, 35%);
+}
+
+hover a dis hsl iman le kijen a last pa bou percent na khel di
+
+13.
+.recipe {
+  padding: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid black;
+}
+
+.recipe:last-child {
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+
+add button chung chet a jong line aum jeh a asuh mang na dia last-child kimang
+
+to preserve new line spacing(white-space)
+--
+.recipe__instructions {
+  white-space: pre-wrap;
+}
+
+14.making the button interactive
+install uuid for unique id
+--npm i uuid
+
+--import uuidv4 from 'uuid/v4'
+
+export default function App() {
+  const [recipes,setRecipes] = useState(sampleRecipes)
+  return <RecipeList recipes={recipes} />;
+}
+
+making the recipe state every time it change like edit or delete this run
+
+function handleRecipeAdd() {
+ const newRecipe = {
+   id:uuidv4(),
+   name: 'New',
+   servings: 1,
+   cookTime: '1:00',
+   instructions: 'Inst',
+   ingredients: [
+     {id: uuidv4(), name: 'Name',amount: '1 Tbs'}
+   ]
+ }
+
+ setRecipes([...recipes, newRecipe]) //recipes a umjouse alah a aban a newRecipe a add, button aki press phat
+}
+
+for delete button
+--
+function handleRecipeDelete(id) {
+    setRecipes(recipes.filter(recipe => recipe.id !== id));
+  }
+
+<button onClick={() => handleRecipeDelete(id)} className="btn btn--danger">
+            Delete
+          </button>
+//also pass the id in props
+
+//take all the id and show all the other id except the one you press..setState renden new recipe
+
+ep.15
+using context api. handleRecipeDelete toh handleRecipeAdd hi props a component 
+chom2 a ki pass ahijeh(deeply nested props ,RecipeList a ki pass a Recipe a ki pass kit but RecipeList in amanlou) 
+a code tam chom chutijeh a context api man di, like store
+props a pass tah loudi
+//context api solve deeply nested props to be pass directly
+
+in App.js file
+
+export const RecipeContext = React.createContext();
+
+inside App funtion--
+ const recipeContextValue = {
+    handleRecipeAdd,
+    handleRecipeDelete
+  };
+
+in return
+ <RecipeContext.Provider value={recipeContextValue}>
+      <RecipeList recipes={recipes} />
+   </RecipeContext.Provider>
+
+//RecipeList component a umjousen context sunga um hi aman theidi
+Recipe component jong asunga aumjeh a aman thei di.
+context a hi value a ki pass ji
+
+RecipeList component a aman nadia --
+ import React, { useContext } from "react";
+ import { RecipeContext } from "./App";
+
+ export default function RecipeList({ recipes }) {
+  const { handleRecipeAdd } = useContext(RecipeContext);
+
+//do this same in Recipe.js file to use
+
+16. useEffect
+useEffect always render when something change or render in the app(if you dont set)
+
+-- useEffect(() => { console.log('Rendered')},[]) 
+
+//empty array meant it only render when the page is  refresh
+
+-- useEffect(() => { console.log('Rendered')},[recipes]) //recipes in useState
+//it will rerender if the recipes change (delete,add,edit)
+
+tua hi page refresh le abon a mang ji so localstorage mandi
+
+const LOCAL_STORAGE_KEY = "cookingWithReact.recipes";
+
+export default function App() {
+  const [recipes, setRecipes] = useState(sampleRecipes);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes)); 
+  }, [recipes]);
+
+--LOCAL_STORAGE_KEY is the 'key' key value pair in object
+//JSON.stringify(recipes));  convert the javascript object to string becoz localstorage can only store string
+
+--now go to browser console in application can look the value
+
+--
+  useEffect(()=> {
+    const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if(recipeJSON != null) setRecipes(JSON.parse(recipeJSON))
+  },[]);  //this run only in first render
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+  }, [recipes]);
+
+//code should be in order get first and set second
+
+-- useEffect(()=> {
+        console.log('Render') //render when the page is first load
+return () => {
+ console.log('unmount') //render when something change in page
+}
+
+}) 
+
+// use when api is call and after api call if we want to clean up call unmount
+
+17.
+recipeedit
+<button>&times;</button> //making X symbol in html sizing a man nopzo
+
+18.
+
+.recipe-edit {
+  padding: 30px;
+  padding-top: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 50%;
+  max-height: 100%;
+  overflow-y: auto; //scrollbar ni um hiche pa hi a let lebou umdi
+}
+
+19.
+
+
+edit meh lou a jong right side ki show jing ,
+imeh phat le bou show nadia.
+ {selectedRecipe && <RecipeEdit recipe={selectedRecipe}/>}
+//if selectedRecipe is true show <RecipeEdit recipe={selectedRecipe}/>
+same as
+ {selectedRecipe ? <RecipeEdit recipe={selectedRecipe}/> : null};
+
+ value={recipe.servings} //edit imeh le value sunga lut but we cant edit nything now. props a kipass tho
+
+20.
+
+  function handleRecipeChange(id, recipe){  //it takes the currend id and all of the recipe in that id
+    const newRecipes = [...recipes] //newRecipes is the current recipe of that id [...recipes] - spread all the recipes
+    const index = newRecipes.findIndex(r=> r.id === id)
+    newRecipes[index]= recipe
+    setRecipes(newRecipes)
+  }
+
+//  const newRecipes = [...recipes] //the reason for doing this is we cannot directly change recipes becoz it is states(setRecipes can only change dis)
+   so we make a duplicate of states instead
+
+
+
+in RecipeEdit.js file import the context
+-- function handleChange(changes) {
+    handleRecipeChange(recipe.id, { ...recipe, ...changes }); // taking ...recipe(all the recipe) and change it to ...change
+  }
+
+//handleChange is a helper function(input tamtah aumjeh a code lhom nadia)
+//using this you create a brand new object(all object is there but change only which you needed),
+// in react dont overwrite props or state if it is not absolutely neccesary
+now code this in the jsx
+
+ onChange={e => handleChange({ name: e.target.value })} in input tag...it will change name
+
+ for serving it is number so use this,
+  onChange={e =>
+            handleChange({ servings: parseInt(e.target.value, 10) || "" })
+          } //parseInt(string, radix) - 10 is decimal radix
+
+ function handleChange(changes) {
+    handleIngredientChange(ingredient.id, { ...ingredient, ...changes });
+  }
+
+
+ function handleIngredientChange(id, ingredient) {
+    const newIngredients = [...recipe.ingredients];
+    const index = newIngredients.findIndex(i => i.id === id);
+    newIngredients[index] = ingredient;
+    handleChange({ ingredients: newIngredients });
+  }
+
+ function handleChange(changes) {
+    handleRecipeChange(recipe.id, { ...recipe, ...changes });
+  }
+
+onInput={(e)=> handleChange({name: e.target.value})}
+
+
+21. onInput - change in every key input
+onChange(javaScript) - render when alll the key is input but in react they bind onChange and onInput so use onChange
+
+22.use props if you want to pass data from parent to child(only one level)
+ use context if it is deeply nested, if you have to pass more then one component
+
+
+
+
+
