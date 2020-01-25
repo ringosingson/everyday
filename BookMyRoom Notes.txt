@@ -1,3 +1,18 @@
+start from 9
 node-
 asynchronuos
 --npm install express
+
+10.
+-- npm install nodemon -D (same as --save-dev)
+
+ nodemode is use for reloading automaticly
+
+12.
+--npm install typescript ts-node -D(ts-node is utility library that let us run program directly from the terminal)
+
+ now create tsconfig.json file for customize configuration;
+
+-- npm install -D @types/node @types/express
+//typescript mun dang2 a akiman thei nadia
+

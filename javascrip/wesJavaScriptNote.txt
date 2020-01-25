@@ -1,0 +1,17 @@
+2.
+shortcut key-
+ctrl + shift + c -> inspect element
+
+win + period -> emoji
+
+ctrl + shift + j or ctrl + tilde(~`)  ->>  console 
+
+command line-
+cd - change directory
+ls -l -> all the list
+dir -> directory
+cd .. -> go up a level
+
+-in the terminal if you type node and enter you can
+just run javaScript
+ to get back to terminal -- ctrl + c
