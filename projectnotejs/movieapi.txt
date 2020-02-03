@@ -1,0 +1,341 @@
+using .env file to hide your api key in github
+--npm install dotenv
+make a .env file and a ,env_sample and .gitignore
+in dotenv file code the api key
+--code--
+require('dotenv').config();
+console.log(process.env);
+--c0de-- to check its working
+
+but here we use this step--
+link-- https://stackoverflow.com/questions/51601903/hiding-api-keys-in-js-setup
+222.
+using OMDB api from omdbapi.com sign up and get the api key
+
+using axios library to fetch data(easy to use);
+
+223.
+Here is your key: 6c93334a
+
+Please append it to all of your API requests,
+
+OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=6c93334a
+
+in the console log in network tab ,select XHR you will see the get response if it's working
+
+read the api documentation for better fetch
+
+code--
+const fetchData = async () => {
+  const response = await axios.get('http://www.omdbapi.com/', {
+    params: {
+      apikey: '6c93334a',
+      //s: 'avengers'    // s search the movie(tamtah index search)
+
+      i: 'tt0848228'    // i - gives details of the selected id movies
+    }
+  });
+  console.log(response.data);
+};
+
+fetchData();
+
+code--
+const fetchData = async searchTerm => {
+  const response = await axios.get('http://www.omdbapi.com/', {
+    params: {
+      apikey: '6c93334a',
+      //s: 'avengers'
+      //i: 'tt0848228'
+      s: searchTerm
+    }
+  });
+  console.log(response.data);
+};
+
+input = document.querySelector('input');
+input.addEventListener('input', e => {
+  fetchData(e.targt.value);
+});
+
+//the above code has a problem it calls the api for every keypress,
+//even if the users make a typo mistake
+
+226. delaying search input.
+for every keypress we call the api
+here there is a problem, call only when the user stop for eg 1 sec,
+here setTimeout and clearTimeout is use
+--everytime setTimeout is call it gives out a no.
+using this no. in clearTimeout it stops the setTimeout immediately
+eg.
+setTimeout(()=> {console.log('hi)}, 1000) // 3
+clearTimeout(3)// stops the setTimeout
+--code --
+const fetchData = async searchTerm => {
+  const response = await axios.get('http://www.omdbapi.com/', {
+    params: {
+      apikey: '6c93334a',
+      //s: 'avengers'
+      //i: 'tt0848228'
+      s: searchTerm
+    }
+  });
+  console.log(response.data);
+};
+
+input = document.querySelector('input');
+
+let timeoutId;
+const onInput = e => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(() => {
+    fetchData(e.target.value);
+  }, 500);
+};
+input.addEventListener('input', onInput);
+--code--
+
+227. understanding debounce.
+debouncing an input - waiting for some time to pass after the last event to actually do something.
+--debounce is use for more reuseable code--
+//to limit the api call etc. good practice
+
+
+return (arg)=> {
+    if(timeoutId){
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(()=> {
+      func(arg);
+    }, 1000)
+
+    // here it pass only a single argument to pass all
+    --
+    return (...arg)=> {
+    if(timeoutId){
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(()=> {
+      func.apply(null,arg);  //.apply takes all the arg and pass it as seperate argument
+    }, 1000)
+
+//debounce take the onInput as a callback function(look the previous code) and
+//debounce return the same onInput funct (it is a wrapper function that restrict  call to onInput funct)(delay)
+
+    --code--important----
+const debounce = (func, delay = 1000) => { // delay = 1000 is the default delay if arg is                                                  //not pass
+  let timeoutId; 
+  return (...arg) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func.apply(null, arg);
+    }, delay);
+  };
+};
+
+const onInput = e => {
+  fetchData(e.target.value);
+};
+input.addEventListener('input', debounce(onInput, 500));
+--code--
+
+230.
+async awaith in fetchData function
+//achunglanga asynchronous ahijeh a,
+const onInput = async e => {
+  const movies = await fetchData(e.target.value);
+  console.log(movies);
+};
+
+231.
+rendering movies in the DOM.
+--code--
+
+const onInput = async e => {
+  const movies = await fetchData(e.target.value);
+
+  for (let movie of movies) {
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <img src='${movie.Poster}'/>
+    <h1>${movie.Title}</h1>
+    `;
+    document.querySelector('#target').appendChild(div);
+  }
+};
+--code--
+232. error
+not in the api if the movie search is not found,
+
+if(response.data.Error){
+    return [];
+  }
+  //here it return nothing or you can show text movie not found from api
+
+  235. 
+  interactive ahiphatle javaScript a html e code le beilam jo.
+  anung ama a connect ahah jeh a.
+
+  236.
+  dropdown in js
+  --code--
+  const root = document.querySelector('.autocomplete');
+root.innerHTML = `
+ <label><b>Search For a Movie</b></label>
+ <input class='input'/>
+ <div class='dropdown'>
+  <div class='dropdown-menu'>
+   <div class= 'dropdown-content results'></div>
+  </div>
+ </div>
+
+`;
+
+const dropdown = document.querySelector('.dropdown');
+const resultsWrapper = document.querySelector('.results');
+
+ dropdown.classList.add('is-active'); //active the class from bulma if input is callback apply this class
+  --code--
+
+  237.
+
+  right above dropdown add this code 
+  ---
+  resultsWrapper.innerHTML = '';
+  dropdown.classList.add('is-active');
+
+//this code clear the previous search result
+// without this code avengers give 10 result then after we search other movie
+it shows the other search movie after the already search result..appending
+
+--code--
+ const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+
+  <img src='${imgSrc}'/>
+  //this fix the broken image if image is not provided by api
+
+  238.
+--code-- 
+document.addEventListener('click', e => {
+  if (!root.contains(event.target)) {
+    dropdown.classList.remove('is-active');
+  }
+});
+//root contains all the dropdown so if a user click somewhere else other then
+//the root container the dropdown close
+//for better understanding console.log(event.target) and see
+
+239.
+--code--
+if (!movies.length) {
+    dropdown.classList.remove('is-active');
+    return;
+  }
+  //if nothing is type it shows a empty box to remove that use this code
+
+240.
+--code--
+  option.addEventListener('click', () => {
+      dropdown.classList.remove('is-active');
+      input.value = movie.Title;
+    });
+  //option is an anchor tag.
+  //here it takes the click movie and show is in the input box and
+  //clear the dropbox
+
+241. follow up request movie na select na click phatle
+--code--
+const onMovieSelect = async movie => {
+  const response = await axios.get('http://www.omdbapi.com/', {
+    params: {
+      apikey: API_KEY,
+      //s: 'avengers'
+      i: movie.imdbID  //imdbID is the movie id detail jouse munadia
+    }
+  });
+  console.log(response.data);
+  //document.querySelector('#summary').innerHTML = movieTemplate(response.data);
+  //
+};
+
+//console.log(movie) to see
+242.
+code chunga pa a data ki return pa html a direct a hetlut
+--code--
+const movieTemplate = movieDetail => {
+  return `
+   <article class ='media'>
+     <figure class = 'media-left'>
+      <p class='image'>
+          <img src='${movieDetail.Poster}'/>
+      </p>
+     </figure>
+     <div class='media-content'>
+      <div class='content'>
+           <h1>${movieDetail.Title}</h1>
+           <h1>${movieDetail.Genre}</h1>
+           <p>${movieDetail.Plot}</p>
+      </div>
+     </div>
+   </article>
+  `;
+};
+246.
+making the autocomplete widget reuseable.
+mun chom2 a jong man thei nadia root element bou pass a manthei nadia
+250.
+testing the autocomplete widget reuseable code with another api
+
+252. making left and right autocomplete
+--code--
+const autoCompleteConfig = {
+  renderOption(movie) {
+    const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+    return `
+    <img src='${imgSrc}'/>
+    ${movie.Title} (${movie.Year})
+    `;
+  },
+  onOptionSelect(movie) {
+    onMovieSelect(movie);
+  },
+  inputValue(movie) {
+    return movie.Title;
+  },
+  async fetchData(searchTerm) {
+    const response = await axios.get('http://www.omdbapi.com/', {
+      params: {
+        apikey: API_KEY,
+        //s: 'avengers'
+        //i: 'tt0848228'
+        s: searchTerm
+      }
+    });
+    if (response.data.Error) {
+      return [];
+    }
+    return response.data.Search;
+  }
+};
+
+createAutoComplete({
+  ...autoCompleteConfig,
+  root: document.querySelector('#left-autocomplete')
+});
+//taking all the content of autoCompleteConfig and pass it to root
+
+createAutoComplete({
+  ...autoCompleteConfig,
+  root: document.querySelector('#right-autocomplete')
+});
+
+253.making the div with class tutorial hidden when movie is selected
+--code---
+ onOptionSelect(movie) {
+    document.querySelector('.tutorial').classList.add('is-hidden');
+    onMovieSelect(movie);
+  },
