@@ -14,5 +14,112 @@ asynchronuos
  now create tsconfig.json file for customize configuration;
 
 -- npm install -D @types/node @types/express
-//typescript mun dang2 a akiman thei nadia
+//typescript mun dang2 a akiman thei nadia, third party library mundang a man nadi
+declaration file ngai for typescript
+//change all the file to ts extension
 
+now it support import in node it doestnt support es6
+
+--code--typescript eg.
+const two: number = 2;
+
+13.
+build all the ts file into js file for production deployment
+ --"build": "tsc -p ./"
+
+ 14.eslint configuration
+ --npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+
+ file .eslintrc.json is created for the rule to be use.
+
+ and vscode setting.json change the setting
+ --
+ //eslint
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ]
+}
+
+--code--
+app.get('/', (_req, res) => res.send(`1 + 2 = ${one + two}`));
+app.listen(port);
+//_req to ignore if not use
+
+1.10.
+//using body-parser to get all the request in json format
+--npm i body-parser
+-- npm i-D @types/body-parser
+
+3.1
+--npm i apollo-server-express
+//use to create graphql api and graphql schema
+--npm install graphql
+//for using apollo-server
+--npm install -D @types/graphql
+//it doestnt have type declaration so intall this
+
+3.2 setting up graphql schema  ,graphql api
+with this we dont need curl or postman
+//server chombeh 
+
+--code--
+index.ts
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { schema } from './graphql';
+
+const app = express();
+const port = 9000;
+
+const server = new ApolloServer({ schema });
+
+server.applyMiddleware({ app, path: '/api' });
+
+app.listen(port);
+
+console.log(`[app] : http://localhost:${port}`);
+
+--code--
+graphql.ts
+
+import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: {
+    hello: {
+      type: GraphQLString,
+      resolve: () => 'Hello from the Query!'
+    }
+  }
+});
+
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    hello: {
+      type: GraphQLString,
+      resolve: () => 'Hello from the Mutation!'
+    }
+  }
+});
+
+export const schema = new GraphQLSchema({ query, mutation });
+//now you can play in the ide provided
+goto 9000/api port
+
+3.3 making the listings in grapql schema
+making get and delete request. 
+//in graphql the query and mutation happen in the same endpoint.
+request only once
+
+3.4
