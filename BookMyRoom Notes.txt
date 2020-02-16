@@ -123,3 +123,8 @@ making get and delete request.
 request only once
 
 3.4
+creating graphql schema.
+in javascript lbrary.
+we need resolvers and typeDefs
+
+--install apollo graphql extention in vscode
