@@ -12,6 +12,761 @@ ls -l -> all the list
 dir -> directory
 cd .. -> go up a level
 
+3.
 -in the terminal if you type node and enter you can
 just run javaScript
  to get back to terminal -- ctrl + c
+
+4.
+dont start variable with capital (capital is use in class)
+//function scope
+var name='ringo'
+
+//block scope
+let and const
+
+//camelcase (all starting letter of word is capital except the first)
+const iLoveYou = true
+
+//uppercamelcase  (all starting letter of word is capital)
+const ILoveYou = love
+
+//snake case
+const i_love_you = true
+
+5.
+watch this for setting eslint and prettier
+installing eslint locally
+--npm init //for pakage.json
+
+--npx install-peerdeps --dev eslint-config-wesbos
+//already configure eslint rule
+
+now create a new file called -- .eslintrc
+code--
+  {
+   "extends" : [
+      "wesbos"
+   ]
+
+  }
+
+6.
+types in JavaScript
+
+SNOB 'N' US
+
+String - Number - Object - Boolean - null - undefined - symbol
+(everything in JavaScript is object)
+
+7.
+const sentence = 'hello\'s' output - hello's
+\\'\' is escaping
+
+const sentence = "hello's"
+0r
+const sentence = `he's  "popular" ` //use back tick
+
+//back tick is also good for html coded in js without newline
+
+string template.
+
+const hello = ` hello 5+5 is ${5+5}`
+
+const html = `
+<div>
+ <h2>Ringo</h2>
+ <h2>${hello}</h2>
+</div>
+`
+
+document.body.innerHTML = html
+
+8.
+const age = 27
+
+typeof age // number
+in browser console type Math. and u will see many option to use
+
+--Math.round(20.5) //21
+--Math.round(20.2) //20
+--Math.floor(20.2) //20
+--Math.floor(20.999) //20 -- gives the lower end of no.
+--Math.ceil(20.2) //21 -- gives upper end
+--Math.random() // give random no. betwn 0 and 1
+
+Math.floor(20/3) output - 6
+20%3 output - 2 //leftover modular operator
+
+0.1 + 0.2 = 0.3000000000000004 // computer use floating point math
+
+so dont use decimal in money Rs 10.50 should be 1050 paise
+
+10 ** 2 = 100 // ** to the power
+1000 ** 200 = Infinity // typeof - and + Infinity is number
+
+NaN is not a number typeof NaN is number
+
+9.
+object--
+order doesnt matter in object (use array for order)
+
+const person = {
+ first = 'ringo',
+ last = 'singson',
+ age = 27
+}
+
+output -- age = 27
+          first = 'ringo'
+          last = 'singson'
+
+person.first // ringo
+
+10. Null and undefinded
+//Null is a value of nothing (it should be explixitly set to null)
+//undefined is that has no value set to it
+
+const cher = { first : 'cher'}
+cher.last //undefined
+
+const teller = {first: 'Raymond', last: 'teller'}
+
+teller.first = 'teller';
+teller.last = Null ;
+
+//officially change Raymond teller to only teller
+
+11.
+  10 === 10 //true (triple equal checks the value and typeof)
+  10 === '10' //false (typeof is not equal)
+
+  10 == '10' //true (double equal only checks the value)
+
+12.
+ JAVASCRIPT FUNCTIONS ARE FIRST CLASS CITIZEN
+  buildin function
+ 1.Date.now()
+ 2.parseFloat('220.32') //220.32 (convert string to number)
+ 2.parseInt('220.32') //220 (convert string to number(int))
+
+13.
+
+  function call(num) {
+   let squareOf = num * num
+   return squareOf //we return to access the value outside of the funct
+}
+
+call(5) // 25
+console.log(squareOf) //error
+let square = call(5)
+console.log(square) // 25 (becoz squareOf is only a temporary variable inside function)
+//need to declare variable outside again to store outside
+
+14.
+parameters and argument
+parameters is place holder
+argument are actual value(the value you pass in)
+
+function call(num){  // num is parameter
+
+} 
+
+call(5) ; //5 is argument
+
+15.
+  different ways to declare functions
+ IIFE (immediately invoked function expression)
+
+ (function() {
+  console.log('run')
+  return 'success'
+})();
+
+Method -
+ const user = {
+   name : 'ringo',
+   sayHi : function(){  //here function name is sayHi
+   return 'Hey ringo'
+  }
+}
+ -- short hand method
+   sayHi(){  //here function name is sayHi
+   return 'Hey ringo'
+  }
+//callback functions
+
+//click callback
+const button = document.querySelectir('.clickMe')
+
+function handleClick() {
+ console.log('Great click')
+}
+
+button.addEventListener('click', handleClick) //handleClick is callback funct
+
+//Timer callback
+setTimeout(handleClick, 1000)
+
+16.Degugging Tools
+   const people = [
+  { name: 'ringo', cool: true, country: 'india' },
+  { name: 'Scott', cool: true, country: 'Merica' },
+  { name: 'Snickers', cool: false, country: 'Dog Country' },
+  ];
+   
+  1.console.error('hey'); //show the error in red
+  2.console.table(people) //console in table row column
+  3.console.count('run') //how many time a program run
+  4.group and groupEnd //collape log in group
+     function doALotOfStuff() {
+   console.group('Doing some stuff');  
+   console.log('Hey Im one');
+   console.warn('watch out!');
+   console.error('hey');
+   console.groupEnd('Doing some stuff');
+    }
+  5. console is display in callstack. learn how to read if error..callstack
+
+  6.select any clickable in browser then in console type
+   -- $0 // this will select the selected element
+   now you can play with it
+  eg. $0.value // give the value if u select input box and type any value
+  $0 - is the first element you click $1 last second and so on
+  $('p') - this select the first element of paragraph
+  $$('p') - all the element of p
+
+  7. breakpoint // if you want to stop the code at that line to see
+  function doctorize(name) {
+   debugger;  //breakpoint
+  return `Dr ringo`;
+  }
+  //in browser go to source you will see the break up of the code // you can see line by line how code is running
+
+  8. network request
+    browser -> network (refresh)
+
+  9. break on
+   browser -> element (right click-> break on)
+   //when there is any modification in element you can search easily
+ 
+17,18,19 (not yet)
+
+20. DOM (document object model)
+
+21. querySelector -- select the first matching element
+    querySelectorAll --select all the element
+    
+// const p = document.querySelector('p');
+// const imgs = document.querySelectorAll('.item img');
+// const item2 = document.querySelector('.item2');
+// const item2Image = item2.querySelector('img');
+// const heading = document.querySelector('h2');
+
+22.
+// console.log(heading.textContent);
+// console.log(heading.innerText); //it even shows the css properties(which is hidden)
+// // set the textContent property on that elment
+// // heading.textContent = 'Wes is cool';
+// // console.log(heading.textContent);
+// // console.log(heading.innerText);
+
+// const pizzaList = document.querySelector('.pizza');
+// console.log(pizzaList.textContent);
+
+insert text
+// // pizzaList.textContent = `${pizzaList.textContent} 🍕`; //it is slow to use dis
+// pizzaList.insertAdjacentText('afterbegin', '🍕'); //use this
+// pizzaList.insertAdjacentText('beforeend', '🍕');
+//read mdn for insertAdjacentText (it has four attribute)
+
+23.
+// Classes!
+const pic = document.querySelector('.nice'); //selecting classname nice
+pic.classList.add('open'); //add class open to the element
+pic.classList.remove('cool');//remove class
+
+console.log(pic.classList); //showing all the class in dat element
+
+function toggleRound() {
+  pic.classList.toggle('round');
+}
+
+pic.addEventListener('click', toggleRound);
+
+24. attributes -- are anything provided to the elements as additional info(eg class, src, alt etc)
+
+  pic.alt = 'Cute Pup'; // setter - setting the alt attribute to cute pup
+  console.log(pic.alt); // getter
+  console.log(pic.naturalWidth); // getter // here it shows 0 becoz image doesnt load yet
+  //but in console in brower it shows 600 
+  pic.width = 200;
+
+  // pic.setAttribute('alt', 'REALLY CUTE PUP');
+  // pic.setAttribute('ringo', 'REALLY CUTE PUP'); 
+  --setAttribute also work in non standard attribute
+// console.log(pic.getAttribute('alt'));
+
+25.creating html in JavaScript
+//creating element p
+--code--
+ const myParagraph = document.createElement('p');
+ myParagraph.textContent = 'I am a P';
+ myParagraph.classList.add('special');
+ console.log(myParagraph);
+
+ //creating img element
+ --code--
+ const myImage = document.createElement('img');
+ myImage.src = 'https://picsum.photos/500';
+ myImage.alt = 'Nice photo';
+
+ //create div element
+ --code--
+  const myDiv = document.createElement('div');
+  myDiv.classList.add('wrapper');
+  console.log(myDiv);
+// now we have creted it but it doesnt show on the webpage
+// to show what is created in te browseer we use appendChild
+myDiv.appendChild(myParagraph); //it appendChild myParagraph inside myDiv
+myDiv.appendChild(myImage); //same
+
+document.body.appendChild(myDiv); //mydiv is shown in the browser inside body html
+//body = document.querySelector('body') //we dont need this becoz the document provide body element
+
+// oh shoot! we need to add somethint to the top. like a heading!
+//use inserAdjacentElement (read mdn doc)
+const heading = document.createElement('h2');
+heading.textContent = 'Cool Things';
+
+myDiv.insertAdjacentElement('beforebegin', heading);
+
+exercise--
+create
+// <ul>
+// <li>One</li>
+// <li>two</li>
+// <li>three</li>
+// <li>four</li>
+// <li>five</li>
+// </ul>
+
+const list = document.createElement('ul');
+const li = document.createElement('li');
+li.textContent = 'three';
+list.appendChild(li);
+
+document.body.insertAdjacentElement('afterbegin', list);
+
+const li5 = document.createElement('li');
+li5.textContent = 'Five';
+list.append(li5);
+
+const li1 = li5.cloneNode(true);
+li1.textContent = 'one';
+list.insertAdjacentElement('afterbegin', li1);
+
+const li4 = document.createElement('li');
+li4.textContent = 'four';
+li5.insertAdjacentElement('beforebegin', li4);
+
+const li2 = document.createElement('li');
+li2.textContent = 'two';
+li1.insertAdjacentElement('afterend', li2);
+
+25.create html from string
+//downside is this are not html element it is a string.
+//to add class and all code after innerHTML is load
+//the above method is too long use this
+
+const item = document.querySelectorAll('.item');
+
+item.innerHTML = `
+<div>
+  <h1>hello ringo</h1>
+</div>
+`
+to directly create element using string
+//use if click event add class etc
+
+// turn a string into a DOM element
+const item = document.querySelector('.item');
+
+const width = 500;
+const src = `https://picsum.photos/${width}`;
+const desc = `Cute Pup <img onload="alert('HACKED')" src="https://picsum.photos/50"/>`;
+const myHTML = `
+  <div class="wrapper">
+    <h2>Cute ${desc}</h2>
+    <img src="${src}" alt="${desc}"/>
+  </div>
+`;
+
+const myFragment = document.createRange().createContextualFragment(myHTML);
+
+document.body.appendChild(myFragment);
+
+27.DOM- traversing and removing nodes
+const wes = document.querySelector('.wes');
+
+// console.log(wes.children);
+// console.log(wes.firstElementChild);
+// console.log(wes.lastElementChild);
+// console.log(wes.previousElementSibling);
+// console.log(wes.nextElementSibling);
+// console.log(wes.parentElement);
+
+removing--
+select some element and type $0 to select in console then type
+-- $0.remove()     //remove the element
+
+code-
+  const p = document.createElement('p');
+  p.textContent = 'I will be removed';
+  document.body.appendChild(p);
+
+  p.remove();
+
+  console.log(p);
+
+  document.body.appendChild(p);
+
+28. to understand always do dis cardio.
+
+29. event
+
+addEventListener usually takes two arguments
+1. click
+2. callback function
+
+code--
+  const butts = document.querySelector('.butts');
+  const coolButton = document.querySelector('.cool');
+
+//arrow function
+  const hooray = () => console.log('HOORAY!');
+
+  butts.addEventListener('click', function() {
+     console.log('Im an anon!');
+  });
+
+//best practice to create function outside
+   function handleClick() {
+    console.log('🐛 IT GOT CLICKED!!!');
+  }
+
+  coolButton.addEventListener('click', hooray);
+
+  butts.removeEventListener('click', handleClick); //not handleClick()
+
+//to add click event to multiple button with same class eg. if you
+have many items ,you have to loop over it and use querySelectorAll 
+and querySelectorAll doesnt have addEventListener so loop thru it one by one
+--use forEach method
+code--
+  // Listen on multiple items
+const buyButtons = document.querySelectorAll('button.buy');
+
+function handleBuyButtonClick(event) {
+  console.log('You clicked a button!');
+  const button = event.target;
+  // console.log(button.textContent);
+  // console.log(parseFloat(event.target.dataset.price));
+  console.log(event.target);
+  console.log(event.currentTarget);
+  console.log(event.target === event.currentTarget);
+  // Stop this event from bubbling up - Propagation
+  //thil khat na click le next by next a click event ahol phei akichai change
+   eg. button -> body -> html -> browser etc // it kept on bubbling up
+  // event.stopPropagation();
+}
+
+//this bind the button individually
+buyButtons.forEach(function(buyButton) {
+  buyButton.addEventListener('click', handleBuyButtonClick);
+});
+
+window.addEventListener(
+  'click',
+  function(event) {
+    console.log('YOU CLICKED THE WINDOW');
+    console.log(event.target);
+    console.log(event.type);
+    // event.stopPropagation();
+    console.log(event.bubbles);
+  },
+  { capture: true }
+);
+
+const photoEl = document.querySelector('.photo');
+
+photoEl.addEventListener('mouseenter', e => {
+  console.log(e.currentTarget);
+  console.log(this);
+});
+
+30. know propagation ,bubbling, capture in javascript.
+bubbling phase go up- span -> button -> body -> html
+capture phase go down- html-> body-> button -> span
+
+31. preventDefault - prevent something to execute directly.
+
+eg. website link na click le direct a a website a nalut ji hicu preventdefault
+naman le nakham thei. like propmt question or confirm to ask to go
+
+eg. form nasep phat le thil na sut le mang pei2 ji khu achanga aki submit ji jeh.
+hiche a hi preventdefault naman phat le default a prevent
+
+code--
+  const wes = document.querySelector('.wes');
+
+wes.addEventListener('click', function(event) {
+  const shouldChangePage = confirm(
+    'This website might be malicious!, do you wish to proceed?'
+  );
+  if (!shouldChangePage) {
+    event.preventDefault();
+  }
+});
+
+//for form we use submit event
+const signupForm = document.querySelector('[name="signup"]');
+
+signupForm.addEventListener('submit', function(event) {
+  const name = event.currentTarget.name.value;
+  if (name.includes('chad')) {
+    alert('Sorry bro');
+    event.preventDefault();
+  }
+});
+
+function logEvent(event) {
+  console.log(event.type); //click or submit etc
+  console.log(event.currentTarget.value);
+}
+signupForm.name.addEventListener('keyup', logEvent);
+signupForm.name.addEventListener('keydown', logEvent);
+signupForm.name.addEventListener('focus', logEvent);
+signupForm.name.addEventListener('blur', logEvent);
+// 'keyup'
+// 'keydown'
+// 'focus' - input box na lut chet a 
+// 'blur' - outside of input
+
+
+const photo = document.querySelector('.photo');
+
+function handlePhotoClick(event) {
+  if (event.type === 'click' || event.key === 'Enter') {
+    console.log('You clicked the photo');
+  }
+}
+
+photo.addEventListener('click', handlePhotoClick);
+photo.addEventListener('keyup', handlePhotoClick);
+
+//event.key and event.type is not same
+
+33.sketch project
+
+34. modal project
+//look the code
+35.i skip
+
+36.tab project.
+//look the code
+//aria-selected in html is ariaSelected in javascript
+
+37.BEDMAS
+  order in JavaScript
+  B- bracket()
+  E-exponent
+  D-division
+  M-multiplication
+  A- addition
+  s-Subtraction
+
+  38. i skip
+
+39.coercion - changing a type
+ eg. let name = 'ringo'
+ !name change string to boolean //true
+ !!name // false
+
+40.important - learn switch
+build turtle project
+
+41.Object
+--object is used where the order of the property does not matter
+  eg. const person = {
+      first: 'wes',
+      last: 'bos',
+      age: 100
+         };  console.log(person) //last:'wes', age:100, first:'wes'
+
+   *change object property
+     person.first = 'ringo'
+     person.age = 28
+
+43.object refeerence and values
+   name1 = 'wes'
+   name2 = 'ringo'
+
+   console.log(name1 === name2) //false
+
+   === checks the types and values
+
+   name1 = name2 // it takes the values of name2 and copies it to name1
+   // name2 = ringo
+
+   console.log(name1 === name2) //true
+
+   for object it's diffferent 
+    const person1 = {
+      first: 'ringo',
+      last: 'singson',
+      clothing : {
+        shirt : 10,
+        pants:2
+
+      }
+         };
+    const person2 = {
+      first : 'ringo',
+      last : 'singson',
+      clothing : {
+        shirt : 10,
+        pants:2
+
+      }
+    }
+
+    console.log(person === person2) //false
+
+    //it is false becoz comparing OBJECT compare to the reference of the objects itself not the values inside of it
+   person1 = person2;
+    person2.first = 'pkk'
+    console.log(person2.first) //pkk
+    console.log(person1.first) //pkk
+  //here both the object get updated (WHAT!!)
+  // becoz it's taking a reference of an object (person1 = person2) so to copy use
+
+ -- To take copy of object 
+   const person3 = { ... person1 }
+   person3.first = 'change'
+   console.log(person3.first) // change
+   console.log(person1.first) // ringo 
+   //solve (it only taking a copy of an object)
+   But the problem here is it copies only one level deep
+
+   person3.clothing.shirt = 100 //update person3 as well as person1
+
+   so spread operator goes only one level deep
+
+   --To deep clone or deep copy we use lodash(utility library)
+   use unpkg and paste in the html just above script tag 
+
+   person3 = _.cloneDeep(person1) ; //solve
+
+   //you can read the lodash document
+merge two object using spread
+
+const merge = {...merge1, ...merge2}
+
+one level deep apicable also in function
+//if you pass an object in a function and modified it the outside object also change
+
+44. map (nung vet kit o)
+ it is use to store in any format the key value can be anything in map
+
+45. Arrays
+  1.create -- 
+  const names = ['ringo', 'singson']
+  2.display--
+   console.log(names[0]) //ringo(array is zero base)
+
+  3.how many items in array--
+   names.length
+  4.to get last items
+   names.[names.length - 1] //zero base so -1 is use
+
+   //Mutation Method (it mutate- change the original value)(not recommend in react)
+   const num = [1,2,3,4,5,6,7]
+   num.reverse()
+
+   //if you want to use mutation method and not mutate the original array at the same time, we need to take a copy of the array
+
+    const numRev = [...num].reverse()
+    
+
+   //immutable (do not change the original)
+   const newNum = num.slice(2,4)
+   console.log(newNum) //3,4
+   console.log(num) //same as original
+
+  //Add array
+   names.push('lux') //dis mutate
+
+   const names2 = [...names,'lux'] //use dis in react (immutable)
+
+   names.unshift('start') //add it to the beggining of array
+   // const name3 = ['start', ...names] (immutable)
+
+   names.shift('last') //add to last
+
+   //slice and splice
+   //use slice offten
+   splice -- takes the original out of the items
+   num.splice(2,3) //read mdn
+
+   //add at any position in array 
+    num = [1,2,3,4]
+    newNum = [...num.slice(0,2),2.4,...num.slice(2)] //slice(2)=> slice(2,infinity or upto last array) 
+
+
+   //remove item
+   num = [1,2,3,4,5,6]
+    newNum = [...num.slice(0,2),...num.slice(4)] //remove 3,4
+
+  exercise --
+
+
+     const comments = [
+      { text: 'Cool Beans', id: 123 },
+      { text: 'Love this', id: 133 },
+      { text: 'Neato', id: 233 },
+      { text: 'good bikes', id: 333 },
+      { text: 'so good', id: 433 },
+    ];
+
+    function deleteComment(id, comments) {
+      // first find the index of the item in the array
+      const commentIndex = comments.findIndex(comment => comment.id === id);
+      // make a new array without that item in it
+      return [
+        ...comments.slice(0, commentIndex),
+        ...comments.slice(commentIndex + 1),
+      ];
+      // return our new array
+    }
+
+    const kaitIndex = names.findIndex(name => name === 'kait');
+
+      or
+      ---long version ---- 
+      const kaitIndex = names.findIndex(name => { 
+        if(name==='kait'){
+        return true
+      } else {
+        return false
+        }
+      })
+      ---- long version ---
+      
+    const newNamesWithOutKait = [
+      // get everything up to kait index
+      ...names.slice(0, kaitIndex),
+      // everything after Kait index
+      ...names.slice(kaitIndex + 1)
+    ];
+    console.log(newNamesWithOutKait);
