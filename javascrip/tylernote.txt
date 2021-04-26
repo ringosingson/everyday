@@ -1,3 +1,5 @@
+checkout the link
+https://www.javascripttutorial.net/javascript-dom/document-object-model-in-javascript/
 ep.1 
 even  without writing any code it has
 window:global object

@@ -1,6 +1,6 @@
 colt explain;
 
-asking dragon if a given list is odd ?
+asking dragon if a given list is odd ? 
 //calling the list over and over again(making it smaller)
 until it stop.
 
@@ -17,6 +17,11 @@ The Call Stack
   of the call stack
 - when javaScript sees the return keyword or when the function ends,
   the compiler will remove(pop)
+
+--pitfall of recursion
+   // no base case means - infinite code run
+   //forgeting to return or return wrong thing
+   //stackoverflow
 
 Two essential parts of a recursive function
 - base case (the condition when the recursion ends)
