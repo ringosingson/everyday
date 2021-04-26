@@ -112,9 +112,9 @@ object--
 order doesnt matter in object (use array for order)
 
 const person = {
- first = 'ringo',
- last = 'singson',
- age = 27
+ first : 'ringo',
+ last : 'singson',
+ age : 27
 }
 
 output -- age = 27
@@ -134,6 +134,8 @@ const teller = {first: 'Raymond', last: 'teller'}
 
 teller.first = 'teller';
 teller.last = Null ;
+teller.last // null
+cher.last //undefinded
 
 //officially change Raymond teller to only teller
 
@@ -712,7 +714,7 @@ one level deep apicable also in function
    names.unshift('start') //add it to the beggining of array
    // const name3 = ['start', ...names] (immutable)
 
-   names.shift('last') //add to last
+   names.shift('last') //
 
    //slice and splice
    //use slice offten
