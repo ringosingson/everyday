@@ -128,3 +128,20 @@ in javascript lbrary.
 we need resolvers and typeDefs
 
 --install apollo graphql extention in vscode
+
+4.1
+pdf slide explaining database
+
+4.2
+create account in mongodb atlas.
+create cluster -> click -> database Access -> create new user
+now -> network access-> ip config-> access to everyone.
+now -> click cluster -> collections -> add my own data
+-> click insert document to create 
+
+4.3
+--npm install mongodb
+-- npm install -D @types/mongodb
+connecting to mongodb
+
+4.4

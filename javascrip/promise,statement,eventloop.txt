@@ -45,6 +45,9 @@ A simple example of an IIFE is:
 even loop
 -- https://flaviocopes.com/javascript-event-loop/
 
+or watch youtube - what the heck is event loop by philip roberts
+--https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
 The call stack is a LIFO queue (Last In, First Out)
 
 The DOM is modified by client-side JavaScript
