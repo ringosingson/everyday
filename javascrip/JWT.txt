@@ -10,7 +10,8 @@ HTTP works as a request-response protocol between a client and server.
 
 A web browser may be the client, and an application on a computer that hosts a web site may be the server.
 
-Example: A client (browser) submits an HTTP request to the server; then the server returns a response to the client. The response contains status information about the request and may also contain the requested content.
+Example: A client (browser) submits an HTTP request to the server; then the server returns a response to the client. 
+The response contains status information about the request and may also contain the requested content.
 
 HTTP Methods
 GET
@@ -27,7 +28,9 @@ The GET Method
 
 PUT is used to send data to a server to create/update a resource.
 
-(The difference between POST and PUT is that PUT requests are idempotent. That is, calling the same PUT request multiple times will always produce the same result. In contrast, calling a POST request repeatedly have side effects of creating the same resource multiple times.)
+(The difference between POST and PUT is that PUT requests are idempotent. That is, calling the same PUT 
+request multiple times will always produce the same result. In contrast, calling a POST request repeatedly have side effects 
+of creating the same resource multiple times.)
 
 EPI 1--
 

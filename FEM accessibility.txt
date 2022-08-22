@@ -1,0 +1,96 @@
+Accessibility
+
+also look accessibility v2 by jon kuperman
+https://coursehunter.net/course/dostupnost-v2
+
+https://www.a11yproject.com/
+https://a11y-style-guide.com/style-guide/
+
+link-
+https://marcysutton.github.io/js-a11y-workshop/
+https://marcysutton.github.io/js-a11y-workshop/slides/1
+
+first look the slides
+
+Making the web more inclusive
+with and for people with disabilities
+
+resourse--
+http://bit.ly/microsoft-inclusive-toolkit
+
+for screen reader in window use NVDA
+
+4. 
+Responsive design is good for accessibility
+
+5.
+    debugging
+
+    Render in a web browser
+    Test controls with the keyboard
+    Use accessibility web extensions
+    Check color contrast
+    Test with screen readers
+    Use magnification & zoom
+6.
+ using axe extension to debbug and see if it's accessible
+-> run in the developer tools
+
+8.
+  button if it's not use or if it's hidden
+  display: none is a good accessibility
+
+10. if you dont have access to a website but want to see what is focus use the below code
+   
+   document.body.addEventListener('focusin', (event) => {
+    console.log(document.activeElement)
+    })
+  paste this code in the console and enter , you will see where the pointer point
+
+11. using lighthouse extention to check performance and accessibility
+    chrome have color picker of there on in the console, just click the any color and you will see it.
+   contrast ratio (AA and AAA) if you can get triple A. it's best
+  slides-> cheatsheet NVDA
+
+  play with zoom and see upto 500 maybe, ctrl+ '+' in windows
+
+13. starting the real lesson
+  tabindex in html
+  making order of the tab. (slides)
+
+14. just use button element for button not div
+    slide 32. it makes the code cleaner and save time
+
+15. ARIA: Accessible Rich Internet Applications 
+  The first rule of ARIA is don’t use it. most of the time it's best to use minimal
+  example if you use a div element as a button we use aria but if we use button element directly aria is not needed
+
+16.
+  Modal layers:disabling background content
+you can use the below code as you see fit. 
+    aria-hidden="true" and tabindex="-1"
+    inert (+ polyfill)
+    CSS display: none
+
+Widget interactions:
+arrow keys or nah?
+
+It depends on the role and pattern ✨
+
+http://w3c.github.io/aria-practices/
+
+Navigation vs. Actions
+a.k.a. Links vs. Buttons
+Link
+
+<a href="/page">Page</a>
+
+<button onClick={action}>Thing</button>
+
+https://marcysutton.com/links-vs-buttons-in-modern-web-applications
+
+19. see the code in video
+
+23. coding a skip link
+
+
